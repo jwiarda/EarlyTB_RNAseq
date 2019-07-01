@@ -1,15 +1,13 @@
 #!/bin/bash
 
-
 ##############################################################
-##										       				##
+##	       		       				    ##
 ## 82-Cattle-16 Project RNA-seq data bioinformatic pipeline ##
 ## Tuberculosis Infected vs. Uninfected	/ Time Course       ##
-## Unstimulated whole blood direct collections 				##
-## Illumina HiSeq, Paired-end reads			 			    ## 
-##															##
+## Unstimulated whole blood direct collections 		    ##
+## Illumina HiSeq, Paired-end reads			    ## 
+##							    ##
 ##############################################################	
-
 
 ## Run on Unix shell
 
@@ -61,10 +59,10 @@ open /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/FastQC_raw/*.html
 # Make a list of file name prefixes:
 cd /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/Fastq_raw
 
-rm /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/a # make sure that there is not a file a 
-												 # that already exists	
-rm /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/samp_name # make sure that there is not a 
-														 # file samp_name already existing
+rm /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/a # make sure that there is not a file a that already exists	
+
+rm /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/samp_name # make sure that there is not a file samp_name already existing
+
 for i in *.fastq.gz
 do  
 echo $i; echo "$i" | cut -d'_' -f 1,2 >> /Users/jayne.wiarda/RNASeq/82_Cattle_RNAseq/a   
