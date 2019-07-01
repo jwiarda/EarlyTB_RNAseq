@@ -5,7 +5,7 @@
 ## 82-Cattle-16 Project RNA-seq data bioinformatic pipeline ##
 ## Tuberculosis Infected vs. Uninfected	/ Time Course       ##
 ## Unstimulated whole blood direct collections 		    ##
-## Illumina HiSeq, Paired-end reads			    ## 
+## Illumina HiSeq, Paired-end reads, 2 x 100		    ## 
 ##							    ##
 ##############################################################	
 
