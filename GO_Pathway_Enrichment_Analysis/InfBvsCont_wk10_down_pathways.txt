@@ -1,0 +1,14 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20190701)
+Annotation Version and Release Date:	GO Ontology database  Released 2019-02-02
+Analyzed List:	InfBvsCont_wk10_down.txt (Bos taurus)	There are duplicate IDs in the file. The unique set of IDs will be used.
+Reference List:	AvsBvsC_filtered_genes.txt (Bos taurus)	There are duplicate IDs in the file. The unique set of IDs will be used.
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	AvsBvsC_filtered_genes.txt - REFLIST (12944)	InfBvsCont_wk10_down.txt (786)	InfBvsCont_wk10_down.txt (expected)	InfBvsCont_wk10_down.txt (over/under)	InfBvsCont_wk10_down.txt (fold Enrichment)	InfBvsCont_wk10_down.txt (raw P-value)	InfBvsCont_wk10_down.txt (FDR)
+metabolic process (GO:0008152)	4314	199	261.96	-	.76	2.57E-06	3.04E-02
+cellular metabolic process (GO:0044237)	3700	167	224.68	-	.74	5.63E-06	3.33E-02
