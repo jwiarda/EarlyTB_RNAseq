@@ -88,27 +88,23 @@ design
 
 # Create the DGE object:
 DGE <- DGEList(counts = counts[,2:40], genes = counts[,1], group = group)
+DGEold <- DGE # use this later
 
-# Plot the raw sequencing depths:
-barplot(DGE$samples$lib.size, names = colnames(DGE), las = 2)
-title("Unfiltered reads library sequencing depths") # note that one sample has extremely low sequencing depth
+# Define the experimental design and generalized linear model fit:
+design <- model.matrix(~ 0 + group) # defining using group-means parameterization
+design
 
-# Plot the logCPM prior to normalization:
-logcpm <- cpm(DGE, log = TRUE)
-boxplot(logcpm, ylab = "Log2 counts per million", las = 2)
-title("Unnormalized logCPM values") # note one sample has abnormally high CPM... same sample that had very low sequencing depth...
+### Calculate the normalization factors (TMM method):
 
-# Plot the logCPM after normalization:
-logcpm <- cpm(DGE, log = TRUE)
-boxplot(logcpm, ylab = "Log2 counts per million", las = 2)
-title("Normalized logCPM values") # One sample still abnormally high...
+DGE <- calcNormFactors(DGE)
+DGE$samples # shows adjusted normalization factors
 
-# Obtain raw gene count densities for quality check:
+### Obtain raw gene count densities for quality check:
 rawDGE <- log10(DGE$counts[,1:ncol(DGE$counts)] + 1) # log transform the raw data
 
 ### Filter out lowly expressed genes:
 
-# Filter out genes with less than 1 count per million (cpm) in at least 5 samples:
+# Filter out genes with less than 0.5 counts per million (cpm) in at least 5 samples:
 keep <- rowSums(cpm(DGE) > 1) >= 5
 
 table(keep) # shows how many genes are kept vs. filtered out
@@ -231,7 +227,7 @@ colnames(wk4counts)
 wk4counts$genes <- counts[,1]
 wk4DEcounts <- merge(wk4counts, as.data.frame(wk4DE), by="genes", type="inner")
 colnames(wk4DEcounts)
-wk4target$treatment <- paste((substr(wk4target$trt_rep, 1, 3)), wk4target$collection_date, sep="_") # defines the treatment group and date of collection
+wk4target$treatment <- paste((substr(wk4target$trt_rep, 1, 3)), wk4target$weeks_post_infection, sep="_") # defines the treatment group and date of collection
 wk4group <- factor(wk4target$treatment)
 wk4group
 colnames(wk4DEcounts)
@@ -239,10 +235,10 @@ wk4DGE <- DGEList(counts = wk4DEcounts[,2:14], genes = wk4DEcounts[,1], group = 
 logcounts <- cpm(wk4DGE,log=TRUE)
 var_genes <- apply(logcounts, 1, var)
 head(var_genes)
-select_var <- names(sort(var_genes, decreasing=TRUE))[1:1060] # looking at all 1,060 DE genes
+select_var <- names(sort(var_genes, decreasing=TRUE))[1:1060] # looking at all the DE genes
 head(select_var)
 highly_variable_lcpm <- logcounts[select_var,]
-colnames(highly_variable_lcpm) <- gsub("_5.3.16", "", colnames(highly_variable_lcpm))
+colnames(highly_variable_lcpm) <- gsub("_4wpi", "", colnames(highly_variable_lcpm))
 dim(highly_variable_lcpm)
 head(highly_variable_lcpm)
 heatmap.2(highly_variable_lcpm,trace="none",scale="row")
@@ -254,7 +250,7 @@ colnames(wk10counts)
 wk10counts$genes <- counts[,1]
 wk10DEcounts <- merge(wk10counts, as.data.frame(wk10DE), by="genes", type="inner")
 colnames(wk10DEcounts)
-wk10target$treatment <- paste((substr(wk10target$trt_rep, 1, 3)), wk10target$collection_date, sep="_") # defines the treatment group and date of collection
+wk10target$treatment <- paste((substr(wk10target$trt_rep, 1, 3)), wk10target$weeks_post_infection, sep="_") # defines the treatment group and date of collection
 wk10group <- factor(wk10target$treatment)
 wk10group
 colnames(wk10DEcounts)
@@ -262,10 +258,10 @@ wk10DGE <- DGEList(counts = wk10DEcounts[,2:14], genes = wk10DEcounts[,1], group
 logcounts <- cpm(wk10DGE,log=TRUE)
 var_genes <- apply(logcounts, 1, var)
 head(var_genes)
-select_var <- names(sort(var_genes, decreasing=TRUE))[1:162] # looking at all 162 DE genes
+select_var <- names(sort(var_genes, decreasing=TRUE))[1:162] # looking at all the DE genes
 head(select_var)
 highly_variable_lcpm <- logcounts[select_var,]
-colnames(highly_variable_lcpm) <- gsub("_6.14.16", "", colnames(highly_variable_lcpm))
+colnames(highly_variable_lcpm) <- gsub("_10wpi", "", colnames(highly_variable_lcpm))
 dim(highly_variable_lcpm)
 head(highly_variable_lcpm)
 heatmap.2(highly_variable_lcpm,trace="none",scale="row")
