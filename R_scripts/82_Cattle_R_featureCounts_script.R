@@ -15,8 +15,8 @@ install.packages("tidyverse")
 ### Load required packages: 
 library(edgeR) # using version 1.30.0
 library(Rsubread) # using version 3.22.0
-library(dplyr) # using version ________
-library(tidyverse)
+library(dplyr) # using version 0.8.0.1
+library(tidyverse) # using version 1.2.1
 
 ####################################################
 # Create table of gene counts using featureCounts: #
