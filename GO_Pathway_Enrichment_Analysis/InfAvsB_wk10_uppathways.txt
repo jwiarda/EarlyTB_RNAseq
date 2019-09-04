@@ -1,0 +1,15 @@
+
+
+
+
+
+Analysis Type:	PANTHER Overrepresentation Test (Released 20190711)
+Annotation Version and Release Date:	GO Ontology database  Released 2019-07-03
+Analyzed List:	upload_1 (Bos taurus)
+Reference List:	AvsBvsC_filtered_genes.txt (Bos taurus)	There are duplicate IDs in the file. The unique set of IDs will be used.
+Test Type:	FISHER
+Correction:	FDR
+GO biological process complete	AvsBvsC_filtered_genes.txt - REFLIST (12944)	upload_1 (313)	upload_1 (expected)	upload_1 (over/under)	upload_1 (fold Enrichment)	upload_1 (raw P-value)	upload_1 (FDR)
+regulation of multicellular organismal development (GO:2000026)	683	37	16.52	+	2.24	1.07E-05	4.24E-02
+regulation of developmental process (GO:0050793)	892	44	21.57	+	2.04	9.93E-06	5.92E-02
+regulation of multicellular organismal process (GO:0051239)	1097	52	26.53	+	1.96	5.38E-06	6.42E-02
